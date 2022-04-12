@@ -19,13 +19,13 @@ public class Function {
 
     public double[] getArrayX() {
         return getPoints().stream()
-                .mapToDouble(point -> point.getX())
+                .mapToDouble(Pair::getX)
                 .toArray();
     }
 
     public double[] getArrayY() {
         return getPoints().stream()
-                .mapToDouble(point -> point.getY())
+                .mapToDouble(Pair::getY)
                 .toArray();
     }
 

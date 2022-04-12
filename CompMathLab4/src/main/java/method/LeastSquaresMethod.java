@@ -33,7 +33,7 @@ public class LeastSquaresMethod {
     private static List<Double> getDifference(Function function, double[] newY) {
         List<Double> functionPoints = function.getPoints()
                 .stream()
-                .map(point -> point.getY())
+                .map(Pair::getY)
                 .toList();
         List<Double> difference = new ArrayList<>();
         for (int i = 0; i < newY.length; i++) {
