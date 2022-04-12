@@ -48,9 +48,8 @@ public class UserIO {
 
     public static int getApproximationChoose() {
         System.out.println("Выберите номер аппроксимиции");
-        Map<Integer, Approximation> approximations = ApproximationStorage.getApproximations();
-        for (int i = 1; i <= approximations.size(); i++) {
-            System.out.println(i + "." + approximations.get(i).typeOfApproximation());
+        for (Map.Entry<Integer, Approximation> entry : ApproximationStorage.getApproximations().entrySet()) {
+            System.out.println(entry.getKey() + "." + entry.getValue().typeOfApproximation());
         }
         return scanner.nextInt();
     }

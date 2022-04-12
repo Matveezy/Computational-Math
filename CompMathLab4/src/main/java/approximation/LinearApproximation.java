@@ -1,14 +1,6 @@
 package approximation;
 
 import entity.Function;
-import entity.Pair;
-import gaussemethod.Gausse;
-import userio.UserIO;
-import utils.FunctionUtil;
-
-import javax.sound.sampled.Line;
-import java.util.Arrays;
-import java.util.List;
 
 public class LinearApproximation extends Function implements Approximation {
 

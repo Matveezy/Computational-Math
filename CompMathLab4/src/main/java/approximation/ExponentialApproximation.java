@@ -3,9 +3,8 @@ package approximation;
 import entity.Function;
 import gaussemethod.Gausse;
 import userio.UserIO;
-import utils.FunctionUtil;
+import util.FunctionUtil;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ExponentialApproximation extends Function implements Approximation {
