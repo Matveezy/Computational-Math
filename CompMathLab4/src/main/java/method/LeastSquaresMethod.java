@@ -14,7 +14,6 @@ public class LeastSquaresMethod {
         int functionChoose = UserIO.getFunctionChoose();
         int approximationChoose = UserIO.getApproximationChoose();
         leastSquaresMethod(FunctionStorage.getFunction(functionChoose), ApproximationStorage.getApproximation(approximationChoose));
-
     }
 
     private static void leastSquaresMethod(Function function, Approximation approximation) {
@@ -27,7 +26,7 @@ public class LeastSquaresMethod {
         Function functionAfterExclusion = functionAfterExclusion(function, max);
         Function approximationAfterExclusion = approximation.approximation(functionAfterExclusion, approximation);
         UserIO.printDeviation(getDeviation(getDifference(function, firstApproximation.getArrayY())));
-        Drawer.draw(function, firstApproximation, approximationAfterExclusion);
+        Drawer.draw(function, firstApproximation, approximationAfterExclusion, max);
     }
 
     private static List<Double> getDifference(Function function, double[] newY) {
