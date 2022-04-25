@@ -13,27 +13,25 @@ public class LeastSquaresMethod {
     public static void leastSquaresMethodRunner() {
         int functionChoose = UserIO.getFunctionChoose();
         int approximationChoose = UserIO.getApproximationChoose();
-        leastSquaresMethod(FunctionStorage.getFunction(functionChoose), ApproximationStorage.getApproximation(approximationChoose));
+        approximationRunner(FunctionStorage.getFunction(functionChoose), ApproximationStorage.getApproximation(approximationChoose));
     }
 
-    private static void leastSquaresMethod(Function function, Approximation approximation) {
-        approximationRunner(function, approximation);
-    }
 
     private static void approximationRunner(Function function, Approximation approximation) {
         Function firstApproximation = approximation.approximation(function, approximation);
-        Pair max = findPointWithMaxDifference(function, firstApproximation.getArrayY());
+        Pair max = findPointWithMaxDifference(function, firstApproximation);
         Function functionAfterExclusion = functionAfterExclusion(function, max);
         Function approximationAfterExclusion = approximation.approximation(functionAfterExclusion, approximation);
-        UserIO.printDeviation(getDeviation(getDifference(function, firstApproximation.getArrayY())));
+        UserIO.printDeviation(getDeviation(getDifference(function, firstApproximation)));
         Drawer.draw(function, firstApproximation, approximationAfterExclusion, max);
     }
 
-    private static List<Double> getDifference(Function function, double[] newY) {
+    private static List<Double> getDifference(Function function, Function approximation) {
         List<Double> functionPoints = function.getPoints()
                 .stream()
                 .map(Pair::getY)
                 .toList();
+        double[] newY = approximation.getArrayY();
         List<Double> difference = new ArrayList<>();
         for (int i = 0; i < newY.length; i++) {
             difference.add(newY[i] - functionPoints.get(i));
@@ -41,10 +39,11 @@ public class LeastSquaresMethod {
         return difference;
     }
 
-    public static Pair findPointWithMaxDifference(Function function, double[] newY) {
+    public static Pair findPointWithMaxDifference(Function function, Function approximation) {
         double max = 0;
         double x = 0;
         List<Pair> points = function.getPoints();
+        double[] newY = approximation.getArrayY();
         for (int i = 0; i < points.size(); i++) {
             double y = points.get(i).getY();
             if (Math.abs(newY[i] - y) > max) {
